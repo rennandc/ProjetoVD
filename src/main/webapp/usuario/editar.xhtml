@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+            <ui:composition template="../template.xhtml">
+        <ui:define name="corpo">
+
+            <h:form>
+                <p:panel id="basic" header="Grava usuário" style="margin-bottom: 20px">
+                    
+                <p:panelGrid columns="2">        
+                    <p:outputLabel value="Id"></p:outputLabel>
+                    <p:inputText value="#{usuarioMB.usuarios.id}" disabled="true" > </p:inputText>
+
+                        <p:outputLabel value="Nome"/>
+                        <p:inputText value="#{usuarioMB.usuarios.nome}"/> 
+
+                        <p:outputLabel value="CPF"></p:outputLabel>
+                        <p:inputMask value="#{usuarioMB.usuarios.cpf}"
+                                     mask="999.999.999-99"> </p:inputMask>
+                        
+                        <p:outputLabel value="Senha"/>
+                        <p:password value="#{usuarioMB.usuarios.senha}"/> 
+
+                        <p:outputLabel value="Perfil" />
+                        <p:selectOneMenu value="#{usuarioMB.usuarios.perfil}">
+                            <f:selectItems value="#{usuarioMB.getPerfil()}" var="perfil"  
+                                           itemValue="#{perfil}" itemLabel="#{perfil.toString()}"/>
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Telefone"></p:outputLabel>
+                        <p:inputMask value="#{usuarioMB.usuarios.telefone}"
+                                     mask="(99)99999-9999"> </p:inputMask>
+
+                          <p:outputLabel value="Setor de Trabalho"></p:outputLabel>
+                          <p:selectOneMenu value="#{usuarioMB.usuarios.setortrabalho}" 
+                                         converter="LocalConverter">
+                            <f:selectItem itemValue="0" itemLabel="-- selecione --" />
+                            <f:selectItems value="#{usuarioMB.listaLocal}" var="local"  
+                                           itemValue="#{local}" itemLabel="#{local.sigla}"/>
+                        </p:selectOneMenu>
+
+                      
+                    </p:panelGrid> 
+
+                    <p:commandButton action="#{usuarioMB.gravar()}" value="Gravar"/>  
+            
+         </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

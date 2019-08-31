@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../template.xhtml">
+
+
+
+        <ui:define name="corpo">
+            <h:form>
+
+                <p:panel header="Equipamento" 
+                         style="margin-bottom:20px">
+
+                    <p:dataTable id="equipamento" value="#{equipametoMB.listaEquipamento}" 
+                                 var="equipamento" >
+                       
+                            <p:column style="text-align: center;" >
+                                <f:facet name="header">ID</f:facet>
+                                <h:outputText value="#{equipamento.id}"  />
+                            </p:column>
+
+                            <p:column style="text-align: center;" >     
+                                <f:facet name="header">Número de Patrimônio</f:facet>
+                                <h:outputText value="#{equipamento.numeroPratrimonio}"  />
+                            </p:column>
+
+
+                            <p:column  >     
+                                <f:facet name="header">Data de Fim de Garantia</f:facet>
+                                <h:outputLabel value="#{equipamento.dtFimGarantia}"  />
+                            </p:column>
+
+                            <p:column style="text-align: center;" >     
+                                <f:facet name="header">Ativo</f:facet>
+                                <h:outputText   value="#{equipamento.ativo}"   />
+                            </p:column>
+
+                            <p:column style="text-align: center;">     
+                                <f:facet name="header">Dados Complementares</f:facet>
+                                <h:outputText value="#{equipamento.dadosComplementares}"  />
+                            </p:column>
+
+
+
+                        <p:column style="text-align: center;" filterBy="#{equipamento.tipoEquipamento.nome}">     
+                                <f:facet name="header">Tipo de Equipamento</f:facet>
+                                <h:outputText value="#{equipamento.tipoEquipamento.nome}"  />
+                            </p:column>
+
+                            <p:column style="text-align: center;" >     
+                                <f:facet name="header">Modelo</f:facet>
+                                <h:outputText value="#{equipamento.modelo.nome}"  />
+                            </p:column>
+
+                            <p:column style="text-align: center;" >     
+                                <f:facet name="header">Fabricante</f:facet>
+                                <h:outputText value="#{equipamento.fabricante}"  />
+                            </p:column>
+
+
+
+                            <p:column>
+                                <p:commandButton ajax="false" update="usuarios" value="Editar" action="#{equipametoMB.editar(equipamento)}" />
+                            </p:column>
+                            <p:column>
+                                <p:commandButton  ajax="false" update="usuarios" value="Excluir" action="#{equipametoMB.excluir(equipamento)}"/>
+                            </p:column>
+
+
+
+                    </p:dataTable>
+
+                </p:panel>
+                <p:commandButton ajax="false" update="usuarios" value="Novo" action="#{equipametoMB.novoEquipamento()}" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

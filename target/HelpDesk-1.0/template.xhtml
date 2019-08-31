@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <style>
+                .ui-datagrid{border: none !important;}  
+                .ui-datagrid-content {border: none !important;}  
+                .ui-panelgrid tr,
+                .ui-panelgrid td {
+                    border: none !important;
+                }
+            </style>
+            <meta content='text/html; charset=UTF-8' 
+                  http-equiv="Content-Type"/>
+            <title>Cadastro</title>
+        </h:head>
+
+        <h:body>
+            <h:form id="form">
+                <p:layout fullPage="true">
+                    <p:layoutUnit position="north" resizable="true"
+                                  closable="true" collapsible="true">
+                        <ui:insert name="cabecalho">
+                            <h1>cabeçalho</h1>
+                        </ui:insert>              
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="100" 
+                                  closable="true" collapsible="true">
+                        <ui:insert name="rodape">
+                            <h1>Rodapé</h1>
+                        </ui:insert>              
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="west" size="250" 
+                                  collapsible="true">
+                        <ui:insert name="esquerda">
+                            <p:menu>
+                                <p:submenu style="width: 220px" label="Cadastros">
+                                    <p:menuitem value="Login"
+                                                action="/login?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}" value="Fabricante" 
+                                                action="/fabricante/listar?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}" value="Modelo" 
+                                                action="/MODELO/listar?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}" value="Usuário" 
+                                                action="/usuario/listar?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}"  value="Local Trabalho" 
+                                                action="/local/listar?faces-redirect=true"/>
+                                    <p:menuitem value="Chamados" 
+                                                action="/Chamado/listar?faces-redirect=true"/>
+                                    <p:menuitem  rendered="#{chamadoMB.isTecnico()}" value="Equipamentos" 
+                                                action="/Equipamento/listar?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}" value="Tipo Chamado" 
+                                                action="/TipoChamado/listar?faces-redirect=true"/>
+                                    <p:menuitem rendered="#{chamadoMB.isTecnico()}"  value="Tipo Equipamento" 
+                                                action="/TipoEquipamento/listar?faces-redirect=true"/>
+                                    
+                                    
+
+
+                                </p:submenu>
+                            </p:menu>
+                        </ui:insert>              
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <ui:insert name="corpo">
+                            <h1>Corpo</h1>
+                        </ui:insert>              
+                    </p:layoutUnit>
+
+                </p:layout>
+
+            </h:form>
+        </h:body>
+    </f:view>
+</html>
+

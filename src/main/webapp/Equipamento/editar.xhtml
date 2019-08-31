@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="../template.xhtml">
+        <ui:define name="corpo">
+
+            <h:form>
+                <p:panel id="basic" header="Equipamento" style="margin-bottom: 20px">
+
+                    <p:panelGrid columns="2">        
+                        <p:outputLabel value="Id"></p:outputLabel>
+                        <p:inputText value="#{equipametoMB.equipamento.id}" disabled="true" > </p:inputText>
+
+                        <p:outputLabel value="Nome da peça"/>
+                        <p:inputText value="#{equipametoMB.equipamento.numeroPratrimonio}"/> 
+
+                        <p:outputLabel value="Data"></p:outputLabel>
+                        <p:calendar id="dtFimGarantia" value="#{equipametoMB.equipamento.dtFimGarantia}" 
+                                    pattern="dd/MM/yyyy" mask="true" timeZone="America/Sao_Paulo"
+                                    locale="pt_BR"/>   
+
+
+                        <p:outputLabel value="Complemento"/>
+                        <p:inputText value="#{equipametoMB.equipamento.dadosComplementares}"/>
+
+
+                        <p:outputLabel value="Observação"/>
+                        <p:inputText value="#{equipametoMB.equipamento.observacao}"/>
+                        
+                        
+                        <p:outputLabel value="Ativo"/>
+                        <p:inputText value="#{equipametoMB.equipamento.ativo}"/>
+                        
+
+
+
+
+                        <p:outputLabel value="Local" />
+                        <p:selectOneMenu value="#{equipametoMB.equipamento.localInstalacao}" converter="LocalConverter">
+                            <f:selectItem itemValue="0" itemLabel="--selecione--"/>
+                            <f:selectItems value="#{equipametoMB.listaLocal}" var="local" itemValue="#{local}" itemLabel="#{local.nome}"/>
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="TipoEquipamento" />
+                        <p:selectOneMenu value="#{equipametoMB.equipamento.tipoEquipamento}" converter="tipoequipamentoConverter">
+                            <f:selectItem itemValue="0" itemLabel="--selecione--"/>
+                            <f:selectItems value="#{equipametoMB.listaTipoEquipamento}" var="tipoequipamento" itemValue="#{tipoequipamento}" itemLabel="#{tipoequipamento.nome}"/>
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="Modelo" />
+                        <p:selectOneMenu value="#{equipametoMB.equipamento.modelo}" converter="ModeloConverter">
+                            <f:selectItem itemValue="0" itemLabel="--selecione--"/>
+                            <f:selectItems value="#{equipametoMB.listaModelo}" var="modelo" itemValue="#{modelo}" itemLabel="#{modelo.nome}"/>
+                        </p:selectOneMenu>
+
+
+
+                        <p:outputLabel value="Fabricante" />
+                        <p:selectOneMenu value="#{equipametoMB.equipamento.fabricante}" converter="fabricanteConverter">
+                            <f:selectItem itemValue="0" itemLabel="--selecione--"/>
+                            <f:selectItems value="#{equipametoMB.listaFabricante}" var="fabricante" itemValue="#{fabricante}" itemLabel="#{fabricante.nome}"/>
+                        </p:selectOneMenu>
+
+
+
+                    </p:panelGrid> 
+
+                    <p:commandButton action="#{equipametoMB.gravar()}" value="Gravar"/>  
+
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

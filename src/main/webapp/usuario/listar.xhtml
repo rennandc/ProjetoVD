@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../template.xhtml">
+
+
+
+        <ui:define name="corpo">
+            <h:form>
+
+                <p:panel header="Usuario" 
+                         style="margin-bottom:20px">
+
+                    <p:dataTable id="usuario" value="#{usuarioMB.listaUsuario}" 
+                                 var="usuario" >
+                        <p:column style="text-align: center;">
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputText value="#{usuario.id}"  />
+                        </p:column>
+
+                        <p:column style="text-align: center;" filterBy="#{usuario.nome}">     
+                            <f:facet name="header">Nome</f:facet>
+                            <h:outputText value="#{usuario.nome}"  />
+                        </p:column>
+                        
+                        <p:column style="text-align: center;" filterBy="#{usuario.cpf}">     
+                            <f:facet name="header">CPF</f:facet>
+                            <h:outputText value="#{usuario.cpf}"  />
+                        </p:column>
+                        
+                        
+                        <p:column style="text-align: center;" filterBy="#{usuario.setortrabalho.nome}">     
+                            <f:facet name="header">Local de trabalho</f:facet>
+                            <h:outputText value="#{usuario.setortrabalho.nome}"  />
+                        </p:column>
+                        
+                        <p:column style="text-align: center;" filterBy="#{usuario.perfil.nome}">     
+                            <f:facet name="header">Perfil</f:facet>
+                            <h:outputText value="#{usuario.perfil}"  />
+                        </p:column>
+                        
+                        
+                        
+                        
+                      
+                        
+                        
+                                               
+                        <p:column>
+                            <p:commandButton ajax="false" update="usuarios" value="Editar" action="#{usuarioMB.editar(usuario)}" />
+                    </p:column>
+                    <p:column>
+                        <p:commandButton  ajax="false" update="usuarios" value="Excluir" action="#{usuarioMB.excluir(usuario)}"/>
+                    </p:column>
+                        
+
+
+                    </p:dataTable>
+
+                </p:panel>
+                <p:commandButton ajax="false" update="usuarios" value="Novo" action="#{usuarioMB.novo()}" />
+                
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

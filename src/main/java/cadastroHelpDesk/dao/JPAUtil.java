@@ -1,0 +1,32 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package cadastroHelpDesk.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+/**
+ *
+ * @author sala302b
+ */
+public class JPAUtil {
+      private static EntityManagerFactory emf = 
+            Persistence.createEntityManagerFactory("helpdeskPU");
+           
+    public static EntityManager getEntityManager(){
+        try {
+            return emf.createEntityManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao acessar o  banco de dados");
+        }
+    
+    }
+    
+}
+
+

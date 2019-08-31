@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="../template.xhtml">
+        <ui:define name="corpo">
+
+            <h:form id="Chamados" >
+                <p:panel header="Chamado">
+
+
+
+                    <p:panel id="abertos" header="ChamadosAbertos" style="margin-bottom:20px">
+                        <p:dataTable value="#{chamadoMB.listaChamadoAberto}" var="chamado"> 
+                            <p:column>
+                                <f:facet name="header">N Chamado</f:facet> 
+                                <h:outputText value="#{chamado.id}"/>
+
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">Usuario</f:facet> 
+                                <h:outputText value="#{chamado.usuarioAbertura.nome}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Técnico</f:facet> 
+                                <h:outputText value="#{chamado.tecnicoResponsavel.nome}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Equipamento</f:facet> 
+                                <h:outputText value="#{chamado.equipamento.numeroPratrimonio}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Status</f:facet> 
+                                <h:outputText value="#{chamado.status}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Tipo Chamado</f:facet> 
+                                <h:outputText value="#{chamado.tipoChamado.nome}"/>
+
+                            </p:column>
+                            
+                            
+                            
+                            <p:column>
+                                <p:commandButton rendered="#{chamadoMB.isTecnico()}"  value="Atender" action="#{chamadoMB.atender(chamado)}"/>
+                                
+                            </p:column>
+                            
+
+
+                        </p:dataTable>
+                        <p:commandButton  ajax="false" update="Chamados" value="NovoChamado" action="#{chamadoMB.novoChamado()}"/>
+                        
+                        
+                    </p:panel>
+                    <br/>
+                    
+                    
+                    
+                    <p:panel id="fechados" header="ChamadosFechados" style="margin-bottom:20px">
+                        <p:dataTable value="#{chamadoMB.listaChamadoFechado}" var="chamado"> 
+                            <p:column>
+                                <f:facet name="header">N Chamado</f:facet> 
+                                <h:outputText value="#{chamado.id}"/>
+
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">Usuario</f:facet> 
+                                <h:outputText value="#{chamado.usuarioAbertura.nome}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Técnico</f:facet> 
+                                <h:outputText value="#{chamado.tecnicoResponsavel.nome}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Equipamento</f:facet> 
+                                <h:outputText value="#{chamado.equipamento.numeroPratrimonio}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Status</f:facet> 
+                                <h:outputText value="#{chamado.status}"/>
+
+                            </p:column>
+
+
+                            <p:column>
+                                <f:facet name="header">Tipo Chamado</f:facet> 
+                                <h:outputText value="#{chamado.tipoChamado.nome}"/>
+
+                            </p:column>
+                            <p:column>
+                                
+                                <p:commandButton  value="Ver" action="#{chamadoMB.solucao(chamado)}"/>
+                                
+                                
+                            </p:column>
+
+
+                        </p:dataTable>
+                       
+
+                    </p:panel> 
+
+                </p:panel>
+
+            </h:form>
+        </ui:define> 
+
+    </ui:composition>
+</html>

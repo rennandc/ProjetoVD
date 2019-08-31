@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+            <ui:composition template="../template.xhtml">
+        <ui:define name="corpo">
+
+            <h:form>
+                <p:panel id="basic" header="Local Trabalho" style="margin-bottom: 20px">
+                <p:panelGrid columns="2">        
+                    <h:outputText value="Id"></h:outputText>
+                    <p:inputText disabled="true" value="#{localMB.local.id}"> </p:inputText>
+
+                    <h:outputText value="Nome"></h:outputText>
+                    <p:inputText value="#{localMB.local.nome}"> </p:inputText>
+
+                    <h:outputText value="Sigla"></h:outputText>
+                    <p:inputText value="#{localMB.local.sigla}"> </p:inputText>
+
+                </p:panelGrid> 
+                    <p:commandButton action="#{localMB.gravar()}" value="Gravar"></p:commandButton>
+            
+         </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+    <ui:composition template="../template.xhtml">
+
+
+
+        <ui:define name="corpo">
+            <h:form>
+                
+                <p:panel header="Fabricante" 
+                         style="margin-bottom:20px">
+
+                    <p:dataTable id="fabricante" value="#{fabricanteMB.listFabricante}" 
+                                 var="fabricante" >
+                        <p:column style="text-align: center;" filterBy="#{fabricante.id}">
+                            <f:facet name="header">ID</f:facet>
+                            <h:outputLabel value="#{fabricante.id}"  />
+                        </p:column>
+                        
+                        <p:column style="text-align: center;" filterBy="#{fabricante.nome}">     
+                            <f:facet name="header">Nome</f:facet>
+                            
+                            <p:inputText  value="#{fabricante.nome}"  />
+                        </p:column>
+
+                        <p:column  style="text-align: center;">
+                            <f:facet name="header">Telefone</f:facet>
+                            
+                            <p:inputMask  value= "#{fabricante.telefone}"
+                                          mask="(99)99999-9999"/>
+                        </p:column> 
+                       
+                        <p:column style="text-align: center;">
+                            <f:facet name="header">Ações</f:facet>
+                            <p:commandButton  ajax="false" update="fabricantes" value="Excluir" action="#{fabricanteMB.excluir(fabricante)}" />
+                        </p:column> 
+
+                        
+                    </p:dataTable>
+            
+                </p:panel>
+                <p:commandButton ajax="false" update="fabricantes" value="Novo" action="#{fabricanteMB.novo()}" />
+                <p:commandButton ajax="false" update="fabricantes" value="Salvar" action="#{fabricanteMB.salvar()}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

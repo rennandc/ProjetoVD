@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+    
+    <ui:composition template="../template.xhtml">
+
+
+
+        <ui:define name="corpo">
+   
+        <h:form>
+
+
+            <p:dataTable value="#{localMB.listaLocal}" var="local">
+                <p:column>
+                    <f:facet name="header">Id</f:facet> 
+                    <h:outputText value="#{local.id}"/>
+                </p:column>
+                <p:column filterBy="#{local.nome}">
+                    <f:facet name="header">Nome</f:facet> 
+                    <h:outputText value="#{local.nome}"/>
+                </p:column>
+                <p:column filterBy="#{local.sigla}">
+                    <f:facet name="header">Sigla</f:facet> 
+                    <h:outputText value="#{local.sigla}"/>
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Editar" action="#{localMB.editar(local)}" />
+                    </p:column>
+                    <p:column>
+                        <p:commandButton value="Excluir" action="#{localMB.excluir(local)}"/>
+                    </p:column>
+            </p:dataTable>
+            <p:commandButton value="Novo Local" action="#{localMB.novoLocal()}"/>
+
+        </h:form>
+       </ui:define>
+    </ui:composition>
+</html>
+
